@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3 # Updated to v3
+      - uses: actions/checkout@v3
 
       - name: Build And Deploy
         id: builddeploy
@@ -25,6 +25,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "client" # Source code folder
-          app_artifact_location: "client/dist" # Vite's build output
-          api_location: ""
-          skip_app_build: false
+          app_artifact_location: "dist" # Vite's build output relative to app_location
+          api_location: "" # No API, so leave empty
+          skip_app_build: false # Let Oryx build the app
